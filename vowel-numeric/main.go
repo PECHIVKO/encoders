@@ -6,49 +6,37 @@ import (
 	"strings"
 )
 
-func encode(inputPhrase string) (outputPhrase string) {
-	var encodedSlice []rune
+var encodetable = map[string]string{
+	"a": "1", "A": "1",
+	"e": "2", "E": "2",
+	"i": "3", "I": "3",
+	"o": "4", "O": "4",
+	"u": "5", "U": "5",
+}
 
-	for _, r := range inputPhrase {
-		switch r {
-		case 'a', 'A':
-			encodedSlice = append(encodedSlice, '1')
-		case 'e', 'E':
-			encodedSlice = append(encodedSlice, '2')
-		case 'i', 'I':
-			encodedSlice = append(encodedSlice, '3')
-		case 'o', 'O':
-			encodedSlice = append(encodedSlice, '4')
-		case 'u', 'U':
-			encodedSlice = append(encodedSlice, '5')
-		default:
-			encodedSlice = append(encodedSlice, r)
-		}
+var decodetable = map[string]string{
+	"1": "a",
+	"2": "e",
+	"3": "i",
+	"4": "o",
+	"5": "u",
+}
+
+func encode(inputPhrase string) (outputPhrase string) {
+	outputPhrase = inputPhrase
+
+	for oldChar, newChar := range encodetable {
+		outputPhrase = strings.ReplaceAll(outputPhrase, oldChar, newChar)
 	}
-	outputPhrase = string(encodedSlice)
 	return
 }
 
 func decode(inputPhrase string) (outputPhrase string) {
-	var decodedSlice []rune
+	outputPhrase = inputPhrase
 
-	for _, r := range inputPhrase {
-		switch r {
-		case '1':
-			decodedSlice = append(decodedSlice, 'a')
-		case '2':
-			decodedSlice = append(decodedSlice, 'e')
-		case '3':
-			decodedSlice = append(decodedSlice, 'i')
-		case '4':
-			decodedSlice = append(decodedSlice, 'o')
-		case '5':
-			decodedSlice = append(decodedSlice, 'u')
-		default:
-			decodedSlice = append(decodedSlice, r)
-		}
+	for oldChar, newChar := range decodetable {
+		outputPhrase = strings.ReplaceAll(outputPhrase, oldChar, newChar)
 	}
-	outputPhrase = string(decodedSlice)
 	return
 }
 
