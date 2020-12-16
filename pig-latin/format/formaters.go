@@ -31,7 +31,7 @@ func FormatOutput(reference string, input string) (output string) {
 	} else if startsWithCapital(reference) {
 		output = strings.Title(strings.ToLower(input))
 	} else {
-		output = input
+		output = strings.ToLower(input)
 	}
 	return
 }
