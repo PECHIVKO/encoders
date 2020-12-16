@@ -31,7 +31,7 @@ func Encode(input string) (output string) {
 
 // encode word as it starts from vowel sound
 func vowelsPigLatin(input string) (output string) {
-	outputSlice := []string{input, "ay"}
+	outputSlice := []string{input, "yay"}
 	output = strings.Join(outputSlice, "")
 	output = format.FormatOutput(input, output)
 	return
