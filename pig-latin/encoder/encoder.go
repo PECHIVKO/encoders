@@ -7,6 +7,9 @@ import (
 	"github.com/PECHIVKO/encoders/pig-latin/format"
 )
 
+var vowels []rune = []rune{'a', 'e', 'i', 'o', 'u'}
+var vowelSounds []string = []string{"a", "e", "i", "o", "u", "hon"}
+
 // Encode encodes input string
 func Encode(input string) (output string) {
 	input = format.RemoveUnexpectedSymbols(input)
@@ -56,7 +59,7 @@ func consonantsPigLatin(input string) (output string) {
 //  isConsostant checks if character is consostant
 func isConsostant(character rune) bool {
 	character = unicode.ToLower(character)
-	var vowels []rune = []rune{'a', 'e', 'i', 'o', 'u'}
+
 	for _, r := range vowels {
 		if character == r {
 			return false
@@ -67,7 +70,6 @@ func isConsostant(character rune) bool {
 
 // startsWithVowelSound checks if string starts from vowel sound
 func startsWithVowelSound(s string) bool {
-	var vowelSounds []string = []string{"a", "e", "i", "o", "u", "hon"}
 
 	s = strings.ToLower(s)
 	for _, sound := range vowelSounds {
